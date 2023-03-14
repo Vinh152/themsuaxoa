@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.menu li{
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.menu li a{
+    text-decoration: none;
+    color: black;
+}
+.tittle{
+    width: 100%;
+    padding: 15px 0px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25x;
+}
+
+table{
+    width: 100%;
+    border: 1px solid black;
+    font-size: 25px;
+}
+table th{
+    border: 1px solid black;
+}
+table tr td{
+    text-align: center;
+    border: 1px solid black;
+}
