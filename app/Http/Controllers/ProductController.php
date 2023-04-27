@@ -13,7 +13,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::first();
+
+        $array=$products->toJson();
+        // return view('show', compact('products'));
+        echo "<br>";
+        print_r($array);
+        echo gettype($array);
+
     }
 
     /**
@@ -23,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('add');
     }
 
     /**
@@ -34,7 +41,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:10|max:255',
+        ]);
+        $produc=new Product();
+        $produc->name=$request->name;
+        $produc->save();
+        return redirect()->route("products.index");
     }
 
     /**
@@ -45,7 +58,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +69,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product=Product::find($id);
+        return view("fix", compact('product'));
     }
 
     /**
@@ -68,7 +82,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $products=Product::find($id);
+        $request->validate([
+            'name'=>'required|min:10|max:255',
+        ]);
+        $products->name=$request->name;
+        $products->save();
+        return redirect()->route('products.index');
     }
 
     /**
@@ -79,6 +99,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

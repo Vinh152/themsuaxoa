@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <form action="{{route('products.store')}}" method="POST">
+        @csrf
         <p>Điền tên sản phẩm</p>
         <input type="text" name="name" placeholder="Nhập tên sản phẩm">
+        <p style="color: red">@error('name')
+            {{$message}}
+        @enderror</p>
         <button>Thêm</button>
     </form>
 </body>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class LoginController extends Controller
 {
@@ -25,10 +26,10 @@ class LoginController extends Controller
         $credentials=$request->only('email', 'password');
         if(Auth::attempt($credentials))
         {
-            return redirect()->intended('dashboard');
 
-            // return redirect()->intended('dashboard')
-            //             ->with('message', 'Signed in!');
+            return redirect()->intended('dashboard');
+            return redirect()->intended('dashboard')
+                        ->with('message', 'Signed in!');
         }
         else{
             return redirect('/');
@@ -39,7 +40,7 @@ class LoginController extends Controller
     public function dashboard(){
         if(Auth::check())
         {
-            return view("show");
+            return redirect()->route("products.index");
         }
         else{
            return redirect('/');

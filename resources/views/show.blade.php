@@ -11,7 +11,7 @@
     <div class="container">
         <ul class="menu">
             <li><a href="">Trang chủ</a></li>
-            <li><a href="">Thêm</a></li>
+            <li><a href="{{route('products.create')}}">Thêm</a></li>
         </ul>
 
         <h1 class="tittle">Bảng chi tiết</h1>
@@ -20,13 +20,15 @@
             <th>Name</th>
             <th>Function</th>
 
+            @foreach ($products as $product)
             <tr>
-                <td>1</td>
-                <td>Hello</td>
-                <td><a href="">Sửa</a> / <a href="">Xóa</a></td>
+                <td>{{$product->id}}</td>
+                <td>{{$product->name}}</td>
+                <td><a href="{{route('products.edit', $product->id)}}">Sửa</a> / <form action="{{route('products.destroy', $product->id)}}" method="POST">@method('DELETE') @csrf <button>Xóa</button></form></td>
             </tr>
+            @endforeach
 
-            
+            {{-- {{ $products->links() }} --}}
         </table>
     </div>
 </body>
